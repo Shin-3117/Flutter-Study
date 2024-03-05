@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:quiz/question_num.dart';
 
 class QuestionsSummary extends StatelessWidget {
-  QuestionsSummary(this.summaryData, {super.key});
+  const QuestionsSummary(this.summaryData, {super.key});
 
   final List<Map<String, Object>> summaryData;
 
@@ -11,34 +11,48 @@ class QuestionsSummary extends StatelessWidget {
     // TODO: implement build
     // throw UnimplementedError();
 
-    return Column(
-      children: summaryData.map(
-        (data) {
-          return Row(
-            children: [
-              Text(((data['question_index'] as int) + 1).toString()),
-              Expanded(
-                child: Column(
-                  children: [
-                    Text(
-                      data['question'] as String,
-                      style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.green),
+    return SizedBox(
+      child: SingleChildScrollView(
+        child: Column(
+          children: summaryData.map(
+            (data) {
+              return Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // Text(
+                  //   ((data['question_index'] as int) + 1).toString(),
+                  //   style: TextStyle(fontSize: 16),
+                  // ),
+                  QuestionNum(
+                      questionIndex: ((data['question_index'] as int) + 1),
+                      isCorrect: data['user_answer'] == data['correct_answer']
+                          ? true
+                          : false),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          data['question'] as String,
+                          style: const TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.green),
+                        ),
+                        const SizedBox(
+                          height: 5,
+                        ),
+                        Text(data['user_answer'] as String),
+                        Text(data['correct_answer'] as String),
+                      ],
                     ),
-                    SizedBox(
-                      height: 5,
-                    ),
-                    Text(data['user_answer'] as String),
-                    Text(data['correct_answer'] as String),
-                  ],
-                ),
-              )
-            ],
-          );
-        },
-      ).toList(),
+                  )
+                ],
+              );
+            },
+          ).toList(),
+        ),
+      ),
     );
   }
 }

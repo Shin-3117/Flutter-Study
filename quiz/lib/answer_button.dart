@@ -17,7 +17,7 @@ class AnswerButton extends StatelessWidget {
         style: ElevatedButton.styleFrom(
             backgroundColor: Colors.lightGreen,
             foregroundColor: Colors.white,
-            padding: EdgeInsets.symmetric(vertical: 10, horizontal: 40),
+            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 40),
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(40))),
         child: Text(

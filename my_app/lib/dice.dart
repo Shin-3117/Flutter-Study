@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 final randomizer = Random();
 
 class DiceRoller extends StatefulWidget {
-  DiceRoller({super.key});
+  const DiceRoller({super.key});
 
   @override
   State<DiceRoller> createState() {
@@ -34,11 +34,11 @@ class _DiceRollerState extends State<DiceRoller> {
         ElevatedButton(
             onPressed: rollDice,
             style: TextButton.styleFrom(
-                padding: EdgeInsets.all(20),
+                padding: const EdgeInsets.all(20),
                 foregroundColor: Colors.black,
-                textStyle: TextStyle(fontSize: 28),
+                textStyle: const TextStyle(fontSize: 28),
                 backgroundColor: Colors.amber),
-            child: Text('Roll Dice'))
+            child: const Text('Roll Dice'))
       ],
     );
   }

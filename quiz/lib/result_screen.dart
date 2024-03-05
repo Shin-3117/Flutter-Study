@@ -3,11 +3,12 @@ import 'package:quiz/data/questions.dart';
 import 'package:quiz/questions_summary.dart';
 
 class ResultScreen extends StatelessWidget {
-  ResultScreen({super.key, required this.choseAnswers});
+  const ResultScreen({super.key, required this.choseAnswers});
 
   final List<String> choseAnswers;
   // final void Function() restart;
 
+// List<Map<String, Object>> get summaryData() << 이런 식으로도 가능
   List<Map<String, Object>> getSummaryData() {
     final List<Map<String, Object>> summary = [];
 
@@ -25,6 +26,7 @@ class ResultScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //get summaryData() 사용시 밑에는 주석처리
     final summaryData = getSummaryData();
     final numTotalQuestions = questions.length;
     final numCorrectQuestions = summaryData.where((data) {
@@ -40,17 +42,17 @@ class ResultScreen extends StatelessWidget {
           children: [
             Text(
               '$numTotalQuestions개 중에서 $numCorrectQuestions 맞췄어요!',
-              style: TextStyle(
+              style: const TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 20,
                   color: Colors.lightGreen),
             ),
-            SizedBox(height: 30),
+            const SizedBox(height: 30),
             QuestionsSummary(getSummaryData()),
-            SizedBox(height: 30),
+            const SizedBox(height: 30),
             TextButton(
               onPressed: () {},
-              child: Text(
+              child: const Text(
                 'Restart',
                 style: TextStyle(color: Colors.green),
               ),

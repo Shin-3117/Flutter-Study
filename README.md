@@ -15,7 +15,45 @@ For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
 
+### 깃 클론 후, flutter 패키지 설정
+
+```
+flutter packages get
+
+flutter packages upgrade
+```
+
+### dart fix
+
+https://dart.dev/tools/dart-fix
+
+dart 수정항목 보기
+
+```
+dart fix --dry-run
+```
+
+dart 수정 실행
+
+```
+dart fix --apply
+```
+
 # Flutter 정리
+
+## Dart
+
+### arrow function
+
+```
+(data) {return a};
+
+(data) => a
+```
+
+### 탬플릿 리터럴 Template literals
+
+'동적$a' == `동적{a}` (JS)
 
 ## Flutter 설정 및 실행
 
@@ -52,23 +90,66 @@ flutter:
 
 ## Materials
 
+### Class
+
+StatelessWidget
+
+```Dart
+class ResultScreen extends StatelessWidget {
+  const ResultScreen({super.key, required this.choseAnswers});
+
+  @override
+  Widget build(context) {
+    return Widget();
+  }
+}
+```
+
+StatefulWidget
+
+```Dart
+class Quiz extends StatefulWidget {
+  const Quiz({super.key});
+
+  @override
+  State<Quiz> createState() {
+    return _QuizState();
+  }
+}
+class _QuizState extends State<Quiz> {
+  @override
+  Widget build(context) {
+    setState() {}
+    return Widget();
+  }
+}
+```
+
 ### Tag
 
 - MaterialApp(home:) ~= App()
 - Scaffold() ~= layout
   appbar, body,
 - Text() :String만 가능 html 태그 context와` 유사
+  - style : TextStyle()
+  - TextAlign : 정렬
 - Container ~= div
-- Column ~= div flex flex-col
+  - alignment: Alignment.center,
+  - decoration: BoxDecoration(
+    color: Colors.blue,
+    borderRadius: BorderRadius.circular(100),
+    ),
+- SizedBox : 위젯 크기 지정용
+  - width: int, height: double.infinity, // 최대넓이
+  - SingleChildScrollView() ~= overflow: scroll
+- Center ~= flex justify-center items-center
+- Column ~= flex flex-col
+  - mainAxisSize: MainAxisSize.min // 크기만큼 만 기본은 전체 차지
+- Row ~= flex flex-row
+  - mainAxisSize: MainAxisSize.min // 크기만큼 만 기본은 전체 차지
 - Image.asset()
-
-### Style
-
-- Center ~= felx justify:center aline-items:center
-
-### other
-
-'동적$a' == `동적{a}` (JS)
+- Padding()
+  - padding: const EdgeInsets.all(8.0),
 
 ### Stateful Widget
 

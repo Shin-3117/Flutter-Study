@@ -6,10 +6,10 @@ void main() {
     MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: Text('appBar'),
+          title: const Text('appBar'),
           backgroundColor: Colors.deepPurple,
         ),
-        body: GradientContainer(),
+        body: const GradientContainer(),
       ),
     ),
   );

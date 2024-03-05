@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:my_app/dice.dart';
 
 class GradientContainer extends StatelessWidget {
-  GradientContainer({super.key});
+  const GradientContainer({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +13,7 @@ class GradientContainer extends StatelessWidget {
             begin: Alignment.topLeft,
             end: Alignment.bottomRight),
       ),
-      child: Center(
+      child: const Center(
         child: DiceRoller(),
       ),
     );
