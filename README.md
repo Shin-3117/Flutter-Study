@@ -69,3 +69,12 @@ flutter:
 ### other
 
 '동적$a' == `동적{a}` (JS)
+
+### Stateful Widget
+
+1. initState(): 객체 초기화 시에 실행
+
+2. build(): 위젯에서 처음 빌드 될 때 실행,
+   setState() 호출 후 실행
+
+3. dispose(): 위젯 삭제 전에 실행
