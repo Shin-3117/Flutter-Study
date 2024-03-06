@@ -63,6 +63,12 @@ dart fix --apply
 
 '동적$a' == `동적{a}` (JS)
 
+```
+'\$ ${expense.amount.toStringAsFixed(2)}' // $ 33.33
+// \$ 로 $표시 그냥은 안됨
+//expense.amount의 소수점 2번째 까지만 표시
+```
+
 ### type지정
 
 `itemData['question_index'] as int`
@@ -141,6 +147,8 @@ class _QuizState extends State<Quiz> {
 - SizedBox : 위젯 크기 지정용
   - width: int, height: double.infinity, // 최대넓이
   - SingleChildScrollView() ~= overflow: scroll
+- ListView //길이를 모르는 리스트에 최적화
+  - ListView.builder(itemBuilder: itemBuilder) // scroll 최적화
 - Center ~= flex justify-center items-center
 - Column ~= flex flex-col
   - mainAxisSize: MainAxisSize.min // 크기만큼 만 기본은 전체 차지
