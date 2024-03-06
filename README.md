@@ -15,6 +15,16 @@ For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
 
+### Flutter 설정 및 실행
+
+- `F1` 또는 `Ctrl+Shift+P`로 명령어 팔레트를 열고 `Flutter: New Project`로 새 프로젝트 생성
+
+- VScode에서 가상 폰 실행 시키는 방법
+  `Ctrl + shift + P`에서 `Flutter: Launch Emulator` 실행
+
+- lib/main.dart 를 실행 시키면 가상 폰에 앱이 실행됨
+-
+
 ### 깃 클론 후, flutter 패키지 설정
 
 ```
@@ -23,9 +33,7 @@ flutter packages get
 flutter packages upgrade
 ```
 
-### dart fix
-
-https://dart.dev/tools/dart-fix
+### dart fix https://dart.dev/tools/dart-fix
 
 dart 수정항목 보기
 
@@ -55,16 +63,12 @@ dart fix --apply
 
 '동적$a' == `동적{a}` (JS)
 
-## Flutter 설정 및 실행
+### type지정
 
-- `F1` 또는 `Ctrl+Shift+P`로 명령어 팔레트를 열고 `Flutter: New Project`로 새 프로젝트 생성
+`itemData['question_index'] as int`
+itmeData라는 객체에서 key값이 'question_index'의 value를 int라고 명시
 
-- VScode에서 가상 폰 실행 시키는 방법
-  `Ctrl + shift + P`에서 `Flutter: Launch Emulator` 실행
-
-- lib/main.dart 를 실행 시키면 가상 폰에 앱이 실행됨
-
-## 이미지 추가
+### 이미지 추가
 
 - 이미지 추가는 파일 추가후, pubspec.yaml에 추가해야함
 
@@ -79,11 +83,6 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/dice-images/dice-1.png
-    - assets/dice-images/dice-2.png
-    - assets/dice-images/dice-3.png
-    - assets/dice-images/dice-4.png
-    - assets/dice-images/dice-5.png
-    - assets/dice-images/dice-6.png
 ```
 
 `Image.asset('assets/dice-images/dice-1.png')`
@@ -97,7 +96,7 @@ StatelessWidget
 ```Dart
 class ResultScreen extends StatelessWidget {
   const ResultScreen({super.key, required this.choseAnswers});
-
+  final List<String> choseAnswers; // 상속 받는 요소 type 정의
   @override
   Widget build(context) {
     return Widget();
