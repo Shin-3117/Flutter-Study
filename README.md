@@ -157,6 +157,42 @@ class _QuizState extends State<Quiz> {
 - Image.asset()
 - Padding()
   - padding: const EdgeInsets.all(8.0),
+- showModalBottomSheet()
+
+  ```Dart
+    void _openAddExpenseOverlay() {
+      showModalBottomSheet(
+          context: context, builder: (ctx) => const AddItemSheet());
+    }
+  ```
+
+- TextField() ~= input
+
+  ```dart
+  class _AddItemSheet extends State<AddItemSheet> {
+    /*
+    var _enteredTitle = '';
+    void _saveTitleInput(String inputValue) {
+      _enteredTitle = inputValue;
+    }
+    */
+
+    final _titleController = TextEditingController();
+    @override
+    void dispose() {
+      _titleController.dispose();
+      super.dispose();
+    }
+
+    @override
+    Widget build(BuildContext context) {
+      return TextField(
+            //onChanged: _saveTitleInput,
+            controller: _titleController,
+            );
+    }
+  }
+  ```
 
 ### Stateful Widget
 

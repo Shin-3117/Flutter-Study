@@ -1,3 +1,4 @@
+import 'package:activity_theming/widgets/expenses_list/add_item_sheet.dart';
 import 'package:activity_theming/widgets/expenses_list/expenses_list.dart';
 import 'package:activity_theming/models/expense.dart';
 import 'package:flutter/material.dart';
@@ -36,12 +37,20 @@ class _ExpensesState extends State<Expenses> {
         category: Category.work),
   ];
 
+  void _openAddExpenseOverlay() {
+    showModalBottomSheet(
+        context: context, builder: (ctx) => const AddItemSheet());
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        title: Text('지출 내역 기록'),
         actions: [
-          IconButton(onPressed: () {}, icon: Icon(Icons.add)),
+          IconButton(
+              onPressed: _openAddExpenseOverlay, //
+              icon: Icon(Icons.add)),
         ],
       ),
       body: Column(
