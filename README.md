@@ -231,6 +231,53 @@ class _QuizState extends State<Quiz> {
   }
   ```
 
+- 드롭다운 버튼
+
+```dart
+Category _selectedCategory = Category.leisure;
+
+DropdownButton(
+  items: Category.values
+      .map(
+        (category) => DropdownMenuItem(
+          value: category,
+          child: Text(
+            category.name,
+          ),
+        ),
+      )
+      .toList(),
+  onChanged: (value) {
+    if (value == null) {
+      return;
+    }
+    setState(() {
+      _selectedCategory = value;
+    });
+  },
+  value: _selectedCategory,
+),
+```
+
+- showDialog() AlertDialog() ~= 모달
+
+```
+showDialog(
+  context: context,
+  builder: (ctx) => AlertDialog( //
+    title: const Text('Invalid input'),
+    content: const Text('올바른 입력을 해주세요'),
+    actions: [
+      TextButton(
+          onPressed: () {
+            Navigator.pop(ctx);
+          }, //
+          child: const Text('Okay'))
+    ],
+  ),
+);
+```
+
 ### Stateful Widget
 
 1. initState(): 객체 초기화 시에 실행
