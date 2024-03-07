@@ -11,7 +11,9 @@ var kColorScheme = ColorScheme.fromSeed(
 );
 
 var kDarkColorScheme = ColorScheme.fromSeed(
-  seedColor: const Color.fromRGBO(76, 175, 245, 100),
+  brightness: Brightness.dark,
+  seedColor: const Color.fromRGBO(104, 216, 255, 100),
+  // seedColor: const Color.fromRGBO(76, 175, 245, 100),
 );
 
 class MyApp extends StatelessWidget {
@@ -20,6 +22,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      themeMode: ThemeMode.system,
       theme: ThemeData().copyWith(
         colorScheme: kColorScheme,
         appBarTheme: const AppBarTheme().copyWith(
@@ -41,21 +44,21 @@ class MyApp extends StatelessWidget {
       darkTheme: ThemeData.dark().copyWith(
         colorScheme: kDarkColorScheme,
         appBarTheme: const AppBarTheme().copyWith(
-          backgroundColor: kColorScheme.primary,
-          foregroundColor: kColorScheme.onPrimaryContainer,
+          backgroundColor: kDarkColorScheme.primaryContainer,
+          foregroundColor: kDarkColorScheme.onPrimaryContainer,
         ),
         cardTheme: CardTheme(
-          color: kColorScheme.primaryContainer,
+          color: kDarkColorScheme.primaryContainer,
         ),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
-            backgroundColor: kColorScheme.primaryContainer,
+            backgroundColor: kDarkColorScheme.primaryContainer,
           ),
         ),
-        textTheme: ThemeData().textTheme.copyWith(
-              titleLarge: TextStyle(fontWeight: FontWeight.bold),
-            ),
-        iconTheme: const IconThemeData().copyWith(color: Colors.black),
+        // textTheme: ThemeData().textTheme.copyWith(
+        //       titleLarge: TextStyle(fontWeight: FontWeight.bold),
+        //     ),
+        // iconTheme: const IconThemeData().copyWith(color: Colors.black),
       ),
       home: const Expenses(),
     );

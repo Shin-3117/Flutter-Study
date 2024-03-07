@@ -147,7 +147,7 @@ class _QuizState extends State<Quiz> {
 }
 ```
 
-### Tag
+### Widget
 
 - MaterialApp(home:) ~= App()
 - Scaffold() ~= layout
@@ -308,7 +308,32 @@ showDialog(
   );
   ```
 
-### Stateful Widget
+### Theme
+
+전체 테마는 main.dart 에 적용하는 것을 추천
+
+```dart
+var kColorScheme = ColorScheme.fromSeed(
+  seedColor: const Color.fromRGBO(104, 216, 255, 100),
+);
+
+var kDarkColorScheme = ColorScheme.fromSeed(
+  brightness: Brightness.dark,
+  seedColor: const Color.fromRGBO(76, 175, 245, 100),
+);
+
+return MaterialApp(
+  themeMode: ThemeMode.system, // system에 따라 light, dark 설정 default 값
+  theme: ThemeData().copyWith(
+    colorScheme: kColorScheme,
+  ),
+  darkTheme: ThemeData.dark().copyWith(
+    colorScheme: kDarkColorScheme,
+  ),
+)
+```
+
+### Stateful Widget Life cycle
 
 1. initState(): 객체 초기화 시에 실행
 
