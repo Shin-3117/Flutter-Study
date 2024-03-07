@@ -23,7 +23,6 @@ samples, guidance on mobile development, and a full API reference.
   `Ctrl + shift + P`에서 `Flutter: Launch Emulator` 실행
 
 - lib/main.dart 를 실행 시키면 가상 폰에 앱이 실행됨
--
 
 ### 깃 클론 후, flutter 패키지 설정
 
@@ -51,6 +50,19 @@ dart fix --apply
 
 ## Dart
 
+### 동기 처리
+
+`async await` `then((value) {})`
+
+```dart
+void functionA() async {
+  final varA = await functionB();
+  functionB().then((res){
+
+  })
+}
+```
+
 ### arrow function
 
 ```
@@ -73,6 +85,11 @@ dart fix --apply
 
 `itemData['question_index'] as int`
 itmeData라는 객체에서 key값이 'question_index'의 value를 int라고 명시
+
+```
+DateTime? _selectedData; // null 일수도 있음을 명시
+_selectedData! // null 이 아님을 명시
+```
 
 ### 이미지 추가
 
@@ -99,7 +116,7 @@ flutter:
 
 StatelessWidget
 
-```Dart
+```dart
 class ResultScreen extends StatelessWidget {
   const ResultScreen({super.key, required this.choseAnswers});
   final List<String> choseAnswers; // 상속 받는 요소 type 정의
@@ -112,7 +129,7 @@ class ResultScreen extends StatelessWidget {
 
 StatefulWidget
 
-```Dart
+```dart
 class Quiz extends StatefulWidget {
   const Quiz({super.key});
 
@@ -157,9 +174,9 @@ class _QuizState extends State<Quiz> {
 - Image.asset()
 - Padding()
   - padding: const EdgeInsets.all(8.0),
-- showModalBottomSheet()
+- showModalBottomSheet() : 바텀시트 활성화
 
-  ```Dart
+  ```dart
     void _openAddExpenseOverlay() {
       showModalBottomSheet(
           context: context, builder: (ctx) => const AddItemSheet());
@@ -191,6 +208,26 @@ class _QuizState extends State<Quiz> {
             controller: _titleController,
             );
     }
+  }
+  ```
+
+- 달력
+
+  ```dart
+  DateTime? _selectedData;
+
+  void _presentDatePicker() async {
+    final nowTime = DateTime.now();
+    final firstDate = DateTime(nowTime.year - 1, nowTime.month, nowTime.day);
+
+    final pickedData = await showDatePicker(
+        context: context,
+        initialDate: nowTime, //
+        firstDate: firstDate,
+        lastDate: nowTime);
+    setState(() {
+      _selectedData = pickedData;
+    });
   }
   ```
 

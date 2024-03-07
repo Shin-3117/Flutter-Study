@@ -1,6 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:activity_theming/models/expense.dart';
 
 class AddItemSheet extends StatefulWidget {
   const AddItemSheet({super.key});
@@ -20,16 +19,20 @@ class _AddItemSheet extends State<AddItemSheet> {
 
   final _titleController = TextEditingController();
   final _amountController = TextEditingController();
+  DateTime? _selectedData;
 
-  void _presentDatePicker() {
+  void _presentDatePicker() async {
     final nowTime = DateTime.now();
     final firstDate = DateTime(nowTime.year - 1, nowTime.month, nowTime.day);
 
-    showDatePicker(
+    final pickedData = await showDatePicker(
         context: context,
         initialDate: nowTime, //
         firstDate: firstDate,
         lastDate: nowTime);
+    setState(() {
+      _selectedData = pickedData;
+    });
   }
 
   @override
@@ -42,7 +45,7 @@ class _AddItemSheet extends State<AddItemSheet> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.all(16),
+      padding: const EdgeInsets.all(16),
       child: Column(
         children: [
           TextField(
@@ -50,7 +53,7 @@ class _AddItemSheet extends State<AddItemSheet> {
             controller: _titleController,
             maxLength: 50,
             keyboardType: TextInputType.text,
-            decoration: InputDecoration(label: Text('제목')),
+            decoration: const InputDecoration(label: Text('제목')),
           ),
           Row(
             children: [
@@ -60,7 +63,7 @@ class _AddItemSheet extends State<AddItemSheet> {
                   controller: _amountController,
                   maxLength: 50,
                   keyboardType: TextInputType.number,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                       prefixText: '\$ ', // 앞에 해당 문자열 추가 추가
                       label: Text('사용금액')),
                 ),
@@ -72,10 +75,12 @@ class _AddItemSheet extends State<AddItemSheet> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    Text('Select Date'),
+                    Text(_selectedData == null
+                        ? 'Select Date'
+                        : formatter.format(_selectedData!)),
                     IconButton(
                         onPressed: _presentDatePicker,
-                        icon: Icon(Icons.date_range))
+                        icon: const Icon(Icons.date_range))
                   ],
                 ),
               )
@@ -83,11 +88,24 @@ class _AddItemSheet extends State<AddItemSheet> {
           ),
           Row(
             children: [
+              DropdownButton(
+                  items: Category.values
+                      .map(
+                        //
+                        (category) => DropdownMenuItem(
+                          value: category,
+                          child: Text(
+                            category.name.toString(),
+                          ),
+                        ),
+                      )
+                      .toList(),
+                  onChanged: (value) {}),
               TextButton(
                 onPressed: () {
                   Navigator.pop(context);
                 },
-                child: Text('취소'),
+                child: const Text('취소'),
               ),
               ElevatedButton(
                   onPressed: () {

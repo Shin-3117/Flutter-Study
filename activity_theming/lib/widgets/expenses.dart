@@ -2,7 +2,6 @@ import 'package:activity_theming/widgets/expenses_list/add_item_sheet.dart';
 import 'package:activity_theming/widgets/expenses_list/expenses_list.dart';
 import 'package:activity_theming/models/expense.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class Expenses extends StatefulWidget {
   const Expenses({super.key});
@@ -46,16 +45,16 @@ class _ExpensesState extends State<Expenses> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('지출 내역 기록'),
+        title: const Text('지출 내역 기록'),
         actions: [
           IconButton(
               onPressed: _openAddExpenseOverlay, //
-              icon: Icon(Icons.add)),
+              icon: const Icon(Icons.add)),
         ],
       ),
       body: Column(
         children: [
-          Text('Chart'), //
+          const Text('Chart'), //
           Expanded(child: ExpensesList(expenses: _registeredExpenses))
         ],
       ),
