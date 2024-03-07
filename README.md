@@ -261,7 +261,7 @@ DropdownButton(
 
 - showDialog() AlertDialog() ~= 모달
 
-```
+```dart
 showDialog(
   context: context,
   builder: (ctx) => AlertDialog( //
@@ -277,6 +277,36 @@ showDialog(
   ),
 );
 ```
+
+- Dismissible : 방향(좌우)으로 드래그 해서 적용되는 활동
+
+  ```dart
+  Dismissible(
+            key: ValueKey(expenses[index]), //
+            onDismissed: (direction) {
+              onRemoveExpense(expenses[index]);
+            },
+            child: ExpensesItem(expenses[index]))
+  ```
+
+- 스넥바
+  ```dart
+  ScaffoldMessenger.of(context).clearSnackBars();
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        duration: Duration(seconds: 3), //
+        content: Text('삭제완료'), //
+        action: SnackBarAction(
+          label: '되돌리기',
+          onPressed: () {
+            setState(() {
+              _registeredExpenses.insert(expenseIndex, expense);
+            });
+          },
+        ),
+      ),
+    );
+  ```
 
 ### Stateful Widget
 
