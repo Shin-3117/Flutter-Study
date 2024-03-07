@@ -1,3 +1,4 @@
+import 'package:activity_theming/main.dart';
 import 'package:activity_theming/models/expense.dart';
 import 'package:flutter/material.dart';
 
@@ -8,8 +9,11 @@ class ExpensesItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isOverExpense = expense.amount > 100;
+
     return Card(
-      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+      color: isOverExpense ? Colors.redAccent[200] : null,
+      margin: const EdgeInsets.all(0),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
         child: Column(

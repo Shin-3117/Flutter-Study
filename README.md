@@ -292,20 +292,20 @@ showDialog(
 - 스넥바
   ```dart
   ScaffoldMessenger.of(context).clearSnackBars();
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        duration: Duration(seconds: 3), //
-        content: Text('삭제완료'), //
-        action: SnackBarAction(
-          label: '되돌리기',
-          onPressed: () {
-            setState(() {
-              _registeredExpenses.insert(expenseIndex, expense);
-            });
-          },
-        ),
+  ScaffoldMessenger.of(context).showSnackBar(
+    SnackBar(
+      duration: Duration(seconds: 3), //
+      content: Text('삭제완료'), //
+      action: SnackBarAction(
+        label: '되돌리기',
+        onPressed: () {
+          setState(() {
+            _registeredExpenses.insert(expenseIndex, expense);
+          });
+        },
       ),
-    );
+    ),
+  );
   ```
 
 ### Stateful Widget

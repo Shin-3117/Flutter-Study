@@ -15,12 +15,24 @@ class ExpensesList extends StatelessWidget {
   Widget build(BuildContext context) {
     // scroll 최적화
     return ListView.builder(
-        itemCount: expenses.length,
-        itemBuilder: (ctx, index) => Dismissible(
-            key: ValueKey(expenses[index]), //
-            onDismissed: (direction) {
-              onRemoveExpense(expenses[index]);
-            },
-            child: ExpensesItem(expenses[index])));
+      itemCount: expenses.length,
+      itemBuilder: (ctx, index) => Padding(
+        padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 8.0),
+        child: Dismissible(
+          background: Container(
+            color: Theme.of(context).colorScheme.error,
+            alignment: Alignment.center,
+          ),
+          // secondaryBackground: Container(
+          //   color: Colors.green,
+          // ),
+          key: ValueKey(expenses[index]), //
+          onDismissed: (direction) {
+            onRemoveExpense(expenses[index]);
+          },
+          child: ExpensesItem(expenses[index]),
+        ),
+      ),
+    );
   }
 }
