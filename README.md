@@ -50,6 +50,16 @@ dart fix --apply
 
 ## Dart
 
+### if for
+
+```
+if(){}
+
+for (var i =0; i < arr.length; i++)
+
+for (final expense in expenses){}
+```
+
 ### 동기 처리
 
 `async await` `then((value) {})`

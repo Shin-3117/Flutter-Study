@@ -64,11 +64,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-/*
-ThemeData.dark().copyWith( // dark() no longer takes any arguments
-  useMaterial3: true,
-  colorScheme: kColorScheme,
-  cardTheme: ...
-)
- */
