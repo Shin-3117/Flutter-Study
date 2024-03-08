@@ -227,7 +227,14 @@ class _QuizState extends State<Quiz> {
   class _AuthScreenState extends State<AuthScreen> {
   final _form = GlobalKey<FormState>();
   var _enteredPasswoed = '';
+  void _submit() {
+    final isValid = _form.currentState!.validate();
 
+    if (isValid) {
+      _form.currentState!.save();
+      print(_enteredPasswoed);
+    }
+  }
   return Form(key: _form,
     child : //Password
       TextFormField(
