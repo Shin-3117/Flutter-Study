@@ -10,6 +10,21 @@ class AuthScreen extends StatefulWidget {
 }
 
 class _AuthScreenState extends State<AuthScreen> {
+  final _form = GlobalKey<FormState>();
+  var _isLogin = true;
+  var _enteredEmail = '';
+  var _enteredPasswoed = '';
+
+  void _submit() {
+    final isValid = _form.currentState!.validate();
+
+    if (isValid) {
+      _form.currentState!.save();
+      print(_enteredEmail);
+      print(_enteredPasswoed);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,25 +46,64 @@ class _AuthScreenState extends State<AuthScreen> {
                   child: Padding(
                     padding: const EdgeInsets.all(16),
                     child: Form(
+                        key: _form,
                         child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        TextFormField(
-                          decoration:
-                              const InputDecoration(labelText: 'Email Address'),
-                          keyboardType: TextInputType.emailAddress,
-                          autocorrect: false,
-                          textCapitalization: TextCapitalization.none,
-                        ),
-                        TextFormField(
-                          decoration:
-                              const InputDecoration(labelText: 'Password'),
-                          keyboardType: TextInputType.visiblePassword,
-                          obscureText: true,
-                          //
-                        ),
-                      ],
-                    )),
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            //Email
+                            TextFormField(
+                              decoration: const InputDecoration(
+                                  labelText: 'Email Address'),
+                              keyboardType: TextInputType.emailAddress,
+                              autocorrect: false,
+                              textCapitalization: TextCapitalization.none,
+                              validator: (value) {
+                                if (value == null ||
+                                    value.trim().isEmpty ||
+                                    !value.contains('@')) {
+                                  return '입력한 값을 입력해 주세요!';
+                                }
+                                return null;
+                              },
+                              onSaved: (value) {
+                                _enteredEmail = value!;
+                              },
+                            ),
+                            //Password
+                            TextFormField(
+                              decoration:
+                                  const InputDecoration(labelText: 'Password'),
+                              keyboardType: TextInputType.visiblePassword,
+                              obscureText: true,
+                              validator: (value) {
+                                if (value == null || value.trim().length < 6) {
+                                  return '비밀번호의 길이는 최소 6자 이상입니다!';
+                                }
+                                return null;
+                              },
+                              onSaved: (value) {
+                                _enteredPasswoed = value!;
+                              },
+                            ),
+                            const SizedBox(height: 12),
+                            ElevatedButton(
+                              onPressed: _submit,
+                              style: ElevatedButton.styleFrom(
+                                  backgroundColor: Theme.of(context)
+                                      .colorScheme
+                                      .primaryContainer),
+                              child: Text(_isLogin ? '로그인' : '회원가입'),
+                            ),
+                            TextButton(
+                              onPressed: () {
+                                setState(() {
+                                  _isLogin = !_isLogin;
+                                });
+                              },
+                              child: Text(_isLogin ? '계정 생성' : '계정 있음'),
+                            ),
+                          ],
+                        )),
                   ),
                 ),
               )

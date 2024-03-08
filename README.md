@@ -221,7 +221,34 @@ class _QuizState extends State<Quiz> {
   }
   ```
 
-- TextFromField()
+- Form() & TextFromField()
+
+  ```dart
+  class _AuthScreenState extends State<AuthScreen> {
+  final _form = GlobalKey<FormState>();
+  var _enteredPasswoed = '';
+
+  return Form(key: _form,
+    child : //Password
+      TextFormField(
+        decoration:
+            const InputDecoration(labelText: 'Password'),
+        keyboardType: TextInputType.visiblePassword,
+        obscureText: true,
+        validator: (value) {
+          if (value == null || value.trim().length < 6) {
+            return '비밀번호의 길이는 최소 6자 이상입니다!';
+          }
+          return null;
+        },
+        onSaved: (value) {
+          _enteredPasswoed = value!;
+        },
+      ),
+    );
+  }
+  ```
+
 - 달력
 
   ```dart
