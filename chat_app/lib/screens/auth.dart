@@ -21,8 +21,8 @@ class _AuthScreenState extends State<AuthScreen> {
               Container(
                 margin: EdgeInsets.all(20),
                 width: 200,
-                child: Text('Init'),
-              )
+                child: Image.asset('assets/images/chat.png'),
+              ),
             ],
           ),
         ),
